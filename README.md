@@ -2,7 +2,7 @@
 =
 Welcome to Lean's  git source of OpenWrt and packages
 =
-中文：如何编译自己需要的 OpenWrt 固件
+中文：m520专属
 -
 注意：
 -
@@ -26,13 +26,13 @@ sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git
 4. ```bash
    ./scripts/feeds update -a
    ./scripts/feeds install -a
-   make menuconfig
+   make menuconfig              kernel/usbsupport那边一堆要勾选的。kernel最外面会有个龙尚要勾上
    ```
 
 5. `make -j8 download V=s` 下载dl库（国内请尽量全局科学上网）
 
 
-6. 输入 `make -j1 V=s` （-j1 后面是线程数。第一次编译推荐用单线程）即可开始编译你要的固件了。
+6. 输入 `make -j1 V=s` （-j1 后面是线程数。这破玩意一堆错误，别想着多线程了，必挂）即可开始编译你要的固件了。
 
 本套代码保证肯定可以编译成功。里面包括了 R20 所有源代码，包括 IPK 的。
 
