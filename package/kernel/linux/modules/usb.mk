@@ -11,6 +11,20 @@ USBNET_DIR:=net/usb
 USBHID_DIR?=hid/usbhid
 USBINPUT_DIR?=input/misc
 
+define KernelPackage/usb-net-lsh-gobi
+  TITLE:=Support for longsang CDC NCM connections
+  KCONFIG:=CONFIG_USB_NET_LSH_GOBI
+  FILES:= $(LINUX_DIR)/drivers/$(USBNET_DIR)/GobiNet.ko
+  AUTOLOAD:=$(call AutoProbe,GobiNet)
+  $(call AddDepends/usb-net)
+endef
+
+define KernelPackage/usb-net-lsh-gobi/description
+ Kernel support for longsang CDC NCM connections
+endef
+
+$(eval $(call KernelPackage,usb-net-lsh-gobi))
+
 define KernelPackage/usb-core
   SUBMENU:=$(USB_MENU)
   TITLE:=Support for USB
