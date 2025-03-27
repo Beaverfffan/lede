@@ -27,6 +27,9 @@ ipq50xx_setup_macs()
 	local label_mac=""
 
 	case "$board" in
+	glinet,gl-b3000)
+		lan_mac=$(macaddr_add $(get_mac_label_dt) 2)
+		;;
 	linksys,mx2000|\
 	linksys,mx5500)
 		label_mac=$(mtd_get_mac_ascii devinfo hw_mac_addr)
