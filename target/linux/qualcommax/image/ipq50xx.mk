@@ -19,15 +19,23 @@ endef
 TARGET_DEVICES += cmcc_rax3000q
 
 define Device/glinet_gl-b3000
-  $(call Device/FitImage)
-  $(call Device/UbiFit)
-  SOC := ipq5018
-  DEVICE_VENDOR := GL.iNET
-  DEVICE_MODEL := GL-B3000
-  BLOCKSIZE := 128k
-  PAGESIZE := 2048
-  DEVICE_DTS_CONFIG := config@mp03.5-c1
-  DEVICE_PACKAGES := ath11k-firmware-qcn6122 ipq-wifi-gl-b3000
+	$(call Device/FitImage)
+	$(call Device/UbiFit)
+	DEVICE_VENDOR := GL.iNET
+	DEVICE_MODEL := GL-B3000
+	SOC := ipq5018
+	KERNEL_LOADADDR := 0x41080000
+	BLOCKSIZE := 128k
+	PAGESIZE := 2048
+	NAND_SIZE := 128
+	DEVICE_DTS_CONFIG := config@mp03.5-c1
+	SUPPORTED_DEVICES += b3000
+	IMAGES := factory.img
+	IMAGE/factory.img := append-ubi | gl-factory --with-uboot-scr | append-metadata
+	DEVICE_PACKAGES := \
+		ath11k-firmware-qcn6122 \
+		ipq-wifi-glinet_gl-b3000 \
+		dumpimage
 endef
 TARGET_DEVICES += glinet_gl-b3000
 
