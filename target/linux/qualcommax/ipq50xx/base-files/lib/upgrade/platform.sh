@@ -103,7 +103,7 @@ platform_pre_upgrade() {
 platform_do_upgrade() {
 	case "$(board_name)" in
 	glinet,gl-b3000)
-		nand_do_upgrade "$1"
+		glinet_do_upgrade "$1"
 		;;
 	jdcloud,re-cs-03)
 		CI_KERNPART="0:HLOS"
